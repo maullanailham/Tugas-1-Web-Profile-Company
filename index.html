@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ...existing code... -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pet Pals - Home</title>
+
+  <!-- ADDED: SEO & Social Meta -->
+  <meta name="description" content="Pet Pals — Adopsi, perawatan, dan perlengkapan hewan peliharaan. Layanan grooming, klinik, dan toko dengan tim profesional.">
+  <meta name="keywords" content="petshop, adopsi, grooming, dokter hewan, hewan peliharaan">
+  <meta name="theme-color" content="#10B981">
+  <meta property="og:title" content="Pet Pals - Home">
+  <meta property="og:description" content="Adopsi, perawatan, dan perlengkapan hewan peliharaan.">
+  <meta property="og:image" content="images/hero.svg">
+  <meta property="og:type" content="website">
+  <!-- ...existing code... -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="icon" href="images/logo.png">
+
+  <!-- ADDED: CSS untuk gambar fallback agar tampil rapi -->
+  <style>
+    .img-fallback{
+      background: linear-gradient(180deg,#f8fafc,#eef2f6);
+      display: block;
+      object-fit: cover;
+    }
+    /* ADDED: konsistensi warna utama */
+    :root { --brand-500: #10B981; --brand-600: #059669; }
+
+    .hero-gradient {
+      background: linear-gradient(-45deg, #047857, #059669, #10B981, #34D399);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+
+    .hero-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating { animation: float 6s ease-in-out infinite; }
+
+    /* Navbar & Social Icons Enhancements */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #10B981;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .glass-nav {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* Enhanced Dark Mode Transitions */
+    * {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+
+    .theme-transition {
+      transition: all 0.3s ease;
+    }
+    
+    /* Dark Mode Toggle Animation */
+    .dark-mode-icon {
+      transform-origin: center;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .dark .dark-mode-icon {
+      transform: rotate(360deg);
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 dark:bg-gray-900 dark:text-gray-200 transition-colors">
+  <header class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-800/90 shadow-lg glass-nav z-40 transition-all duration-300">
+    <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
+      <div class="flex items-center gap-3 group">
+        <img src="images/logo.png" alt="logo" class="h-10 transform group-hover:scale-110 transition-transform">
+        <span class="font-bold text-xl bg-gradient-to-r from-emerald-600 to-emerald-400 bg-clip-text text-transparent">Pet Pals</span>
+      </div>
+      
+      <nav class="flex items-center gap-6">
+        <!-- Updated navigation links -->
+        <a href="#home" class="nav-link text-gray-700 dark:text-gray-200 font-medium hover:text-emerald-600 transition-colors">Home</a>
+        <a href="#about" class="nav-link text-gray-700 dark:text-gray-200 font-medium hover:text-emerald-600 transition-colors">Tentang</a>
+        <a href="#services" class="nav-link text-gray-700 dark:text-gray-200 font-medium hover:text-emerald-600 transition-colors">Layanan</a>
+        <a href="#portfolio" class="nav-link text-gray-700 dark:text-gray-200 font-medium hover:text-emerald-600 transition-colors">Portfolio</a>
+        <a href="#shop" class="nav-link text-gray-700 dark:text-gray-200 font-medium hover:text-emerald-600 transition-colors">Toko</a>
+        <a href="#team" class="nav-link text-gray-700 dark:text-gray-200 font-medium hover:text-emerald-600 transition-colors">Tim</a>
+        <a href="#contact" class="nav-link text-gray-700 dark:text-gray-200 font-medium hover:text-emerald-600 transition-colors">Kontak</a>
+
+        <!-- Updated social links with modern icons -->
+        <div class="flex items-center gap-3 ml-4 border-l pl-4 dark:border-gray-700">
+          <a href="https://wa.me/6281234567890?text=Halo%20Pet%20Pals" 
+             class="social-icon-btn group relative p-2 rounded-full bg-emerald-50 hover:bg-emerald-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition-all"
+             aria-label="WhatsApp Pet Pals">
+            <div class="absolute -top-8 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+              WhatsApp
+            </div>
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884a9.87 9.87 0 01-4.853-1.278l-.361.214 3.741-.982-.998 3.648.235.374a9.86 9.86 0 011.51 5.26c-.001 5.45-4.436 9.884-9.888 9.884-2.64 0-5.122-1.03-6.988-2.898a9.825 9.825 0 01-2.893-6.994c.003-5.45 4.437-9.884 9.885-9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+          
+          <a href="https://instagram.com/petpals.example" 
+             class="social-icon-btn group relative p-2 rounded-full bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 hover:from-pink-600 hover:via-red-600 hover:to-yellow-600 transition-all"
+             target="_blank" rel="noopener" aria-label="Instagram Pet Pals">
+            <div class="absolute -top-8 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+              Instagram
+            </div>
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </a>
+          
+          <a href="https://www.tiktok.com/@petpals_example" 
+             class="social-icon-btn group relative p-2 rounded-full bg-black hover:bg-gray-800 transition-all"
+             target="_blank" rel="noopener" aria-label="TikTok Pet Pals">
+            <div class="absolute -top-8 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+              TikTok
+            </div>
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64c.298 0 .59.045.87.134V9.37a6.18 6.18 0 00-1-.08A6.34 6.34 0 004 17.91a6.34 6.34 0 0010.82-4.41v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.13"/>
+            </svg>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pt-20" id="home">
+    <!-- Hero Section (Updated) -->
+    <section class="hero-gradient hero-pattern relative min-h-[600px] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 bg-black/10"></div>
+      
+      <div class="relative container mx-auto px-6 py-24 text-center">
+        <div class="floating max-w-4xl mx-auto">
+          <span class="inline-block text-emerald-100 text-lg font-medium mb-4 tracking-wider">🐾 SELAMAT DATANG DI</span>
+          <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
+            Pet<span class="text-emerald-200">Pals</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto">
+            Tempat terpercaya untuk adopsi, perawatan, dan perlengkapan hewan peliharaan kesayangan Anda
+          </p>
+          
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="#services" 
+               class="group relative inline-flex items-center px-8 py-3 bg-white text-emerald-600 rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg">
+              <span class="absolute inset-0 bg-emerald-500 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></span>
+              <span class="relative group-hover:text-white transition-colors duration-300 flex items-center">
+                Lihat Layanan
+                <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </span>
+            </a>
+            
+            <a href="#contact" 
+               class="relative inline-flex items-center px-8 py-3 bg-emerald-500/20 backdrop-blur-sm text-white rounded-lg overflow-hidden transition-all duration-300 hover:bg-emerald-500/30 hover:scale-105">
+              <span class="relative flex items-center">
+                Hubungi Kami
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <div class="mt-12 flex justify-center gap-8 text-white/80">
+            <div class="text-center">
+              <div class="text-3xl font-bold mb-1">1200+</div>
+              <div class="text-sm">Pelanggan Puas</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold mb-1">24/7</div>
+              <div class="text-sm">Layanan Dokter</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold mb-1">5000+</div>
+              <div class="text-sm">Hewan Teradopsi</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-32 h-32 bg-white/5 rounded-full blur-3xl"></div>
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
+      </div>
+    </section>
+
+    <!-- About (Updated) -->
+    <section id="about" class="max-w-6xl mx-auto py-20 px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h3 class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">Tentang Kami</h3>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Memberikan pelayanan terbaik untuk hewan kesayangan Anda sejak 2018.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Profil Card -->
+        <div class="bg-gradient-to-br from-emerald-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="mb-6">
+            <svg class="w-12 h-12 text-emerald-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+            <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">Profil Perusahaan</h4>
+            <p class="text-gray-600 dark:text-gray-300">Pet Pals adalah solusi lengkap untuk kebutuhan hewan peliharaan Anda. Kami menyediakan layanan adopsi, grooming, dan klinik dengan standar profesional.</p>
+          </div>
+        </div>
+
+        <!-- Visi Misi Card -->
+        <div class="bg-gradient-to-br from-emerald-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="mb-6">
+            <svg class="w-12 h-12 text-emerald-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+            <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">Visi & Misi</h4>
+            <div class="space-y-4">
+              <div>
+                <h5 class="font-semibold text-emerald-600 dark:text-emerald-400 mb-1">Visi</h5>
+                <p class="text-gray-600 dark:text-gray-300">Menjadi solusi terpercaya dan terlengkap untuk kesejahteraan hewan peliharaan di Indonesia.</p>
+              </div>
+              <div>
+                <h5 class="font-semibold text-emerald-600 dark:text-emerald-400 mb-1">Misi</h5>
+                <ul class="text-gray-600 dark:text-gray-300 space-y-2">
+                  <li class="flex items-center">
+                    <svg class="w-4 h-4 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Layanan kesehatan profesional
+                  </li>
+                  <li class="flex items-center">
+                    <svg class="w-4 h-4 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Program adopsi bertanggung jawab
+                  </li>
+                  <li class="flex items-center">
+                    <svg class="w-4 h-4 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Produk berkualitas premium
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline Card -->
+        <div class="bg-gradient-to-br from-emerald-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="mb-6">
+            <svg class="w-12 h-12 text-emerald-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">Perjalanan Kami</h4>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 w-8 h-8 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-sm font-semibold text-emerald-600 dark:text-emerald-400">18</span>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-emerald-600 dark:text-emerald-400">2018</h5>
+                  <p class="text-gray-600 dark:text-gray-300">Didirikan oleh tim dokter hewan & pecinta hewan</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="flex-shrink-0 w-8 h-8 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-sm font-semibold text-emerald-600 dark:text-emerald-400">20</span>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-emerald-600 dark:text-emerald-400">2020</h5>
+                  <p class="text-gray-600 dark:text-gray-300">Ekspansi layanan klinik & grooming</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="flex-shrink-0 w-8 h-8 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-sm font-semibold text-emerald-600 dark:text-emerald-400">23</span>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-emerald-600 dark:text-emerald-400">2023</h5>
+                  <p class="text-gray-600 dark:text-gray-300">Peluncuran toko online & program adopsi</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="max-w-6xl mx-auto py-16 px-6">
+      <!-- ...existing services code... -->
+    </section>
+
+    <!-- Portfolio (NEW) -->
+    <section id="portfolio" class="bg-gradient-to-br from-emerald-50 via-emerald-100 to-emerald-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-12 transition-colors">
+      <div class="max-w-6xl mx-auto px-6">
+        <h3 class="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">Portofolio & Proyek</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden hover:shadow-lg transition-shadow">
+            <img src="images/ProgramAdopsiKomunitas.jpg" class="w-full h-48 object-cover" alt="project1">
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100">Program Adopsi Komunitas</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Menemukan rumah baru untuk ratusan hewan.</p>
+              <a href="#contact" class="mt-3 inline-flex items-center text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300">
+                Pelajari lebih lanjut
+                <svg class="w-4 h-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+              </a>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden hover:shadow-lg transition-shadow">
+            <img src="images/KlinikKeliling.jpg" class="w-full h-48 object-cover" alt="project2">
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100">Klinik Keliling</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Layanan kesehatan ke komunitas terpencil.</p>
+              <a href="#contact" class="mt-3 inline-flex items-center text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300">
+                Pelajari lebih lanjut
+                <svg class="w-4 h-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+              </a>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden hover:shadow-lg transition-shadow">
+            <img src="images/Pelatihanhewan.jpg" class="w-full h-48 object-cover" alt="project3">
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100">Pelatihan Perawatan</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Workshop untuk pemilik hewan peliharaan.</p>
+              <a href="#contact" class="mt-3 inline-flex items-center text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300">
+                Pelajari lebih lanjut
+                <svg class="w-4 h-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop / Toko (NEW) -->
+    <section id="shop" class="max-w-6xl mx-auto py-16 px-6">
+      <h3 class="text-3xl font-bold text-center mb-6">Toko Perlengkapan & Makanan Hewan</h3>
+
+      <!-- Filters -->
+      <div class="flex justify-center gap-3 mb-6">
+        <button class="shop-filter px-4 py-2 rounded bg-emerald-50 hover:bg-emerald-100 text-emerald-600" data-cat="all">Semua</button>
+        <button class="shop-filter px-4 py-2 rounded bg-emerald-50 hover:bg-emerald-100 text-emerald-600" data-cat="food">Makanan</button>
+        <button class="shop-filter px-4 py-2 rounded bg-emerald-50 hover:bg-emerald-100 text-emerald-600" data-cat="accessories">Aksesoris</button>
+        <button class="shop-filter px-4 py-2 rounded bg-emerald-50 hover:bg-emerald-100 text-emerald-600" data-cat="health">Kesehatan</button>
+      </div>
+
+      <!-- Products grid -->
+      <div class="grid md:grid-cols-3 gap-6" id="productList">
+        <!-- Product item template: data-id, data-name, data-price (number), data-category -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden p-4 product-card" data-id="p1" data-name="Makanan Anjing Premium 1kg" data-price="75000" data-category="food">
+          <img src="images/product_dogfood.png" alt="Makanan Anjing" class="w-full h-40 object-cover mb-3">
+          <h4 class="font-semibold">Makanan Anjing Premium 1kg</h4>
+          <div class="text-sm text-gray-600 dark:text-gray-300 mb-3">Bergizi seimbang untuk anjing dewasa.</div>
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-emerald-600">Rp 75.000</div>
+            <button class="add-to-cart px-3 py-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded">Tambah</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden p-4 product-card" data-id="p2" data-name="Makanan Kucing 500g" data-price="45000" data-category="food">
+          <img src="images/product_catfood.png" alt="Makanan Kucing" class="w-full h-40 object-cover mb-3">
+          <h4 class="font-semibold">Makanan Kucing 500g</h4>
+          <div class="text-sm text-gray-600 dark:text-gray-300 mb-3">Rasa ikan yang disukai kucing.</div>
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-emerald-600">Rp 45.000</div>
+            <button class="add-to-cart px-3 py-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded">Tambah</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden p-4 product-card" data-id="p3" data-name="Mainan Kucing Bola" data-price="25000" data-category="accessories">
+          <img src="images/product_toy.png" alt="Mainan Kucing" class="w-full h-40 object-cover mb-3">
+          <h4 class="font-semibold">Mainan Kucing Bola</h4>
+          <div class="text-sm text-gray-600 dark:text-gray-300 mb-3">Stimulus bermain aktif.</div>
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-emerald-600">Rp 25.000</div>
+            <button class="add-to-cart px-3 py-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded">Tambah</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden p-4 product-card" data-id="p4" data-name="Sikat Grooming" data-price="60000" data-category="accessories">
+          <img src="images/product_brush.png" alt="Sikat Grooming" class="w-full h-40 object-cover mb-3">
+          <h4 class="font-semibold">Sikat Grooming</h4>
+          <div class="text-sm text-gray-600 dark:text-gray-300 mb-3">Untuk perawatan bulu harian.</div>
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-emerald-600">Rp 60.000</div>
+            <button class="add-to-cart px-3 py-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded">Tambah</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden p-4 product-card" data-id="p5" data-name="Vitamin Hewan 60pcs" data-price="120000" data-category="health">
+          <img src="images/product_vitamin.png" alt="Vitamin Hewan" class="w-full h-40 object-cover mb-3">
+          <h4 class="font-semibold">Vitamin Hewan 60pcs</h4>
+          <div class="text-sm text-gray-600 dark:text-gray-300 mb-3">Mendukung imun dan kesehatan.</div>
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-emerald-600">Rp 120.000</div>
+            <button class="add-to-cart px-3 py-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded">Tambah</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden p-4 product-card" data-id="p6" data-name="Kandang Portable" data-price="350000" data-category="accessories">
+          <img src="images/product_cage.png" alt="Kandang Portable" class="w-full h-40 object-cover mb-3">
+          <h4 class="font-semibold">Kandang Portable</h4>
+          <div class="text-sm text-gray-600 dark:text-gray-300 mb-3">Praktis untuk perjalanan singkat.</div>
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-emerald-600">Rp 350.000</div>
+            <button class="add-to-cart px-3 py-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded">Tambah</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats & Team -->
+    <section id="stats" class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-3xl font-bold mb-6">Kami Peduli</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">Memberikan layanan terbaik sejak 2018.</p>
+          <div class="flex gap-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-emerald-500" id="stat1">0</div>
+              <div class="text-sm text-gray-500">Pelanggan</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-emerald-500" id="stat2">0</div>
+              <div class="text-sm text-gray-500">Layanan</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-emerald-500" id="stat3">0</div>
+              <div class="text-sm text-gray-500">Item Terjual</div>
+            </div>
+          </div>
+        </div>
+        <div id="team">
+          <h4 class="text-xl font-semibold mb-4">Tim Kami</h4>
+          <!-- ...existing team code... -->
+          <div class="grid grid-cols-3 gap-4">
+            <div class="text-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <img src="images/team1.jpg" class="mx-auto h-24" alt="Ayu">
+              <div class="mt-3 font-semibold">Ayu</div>
+              <div class="text-sm text-gray-500">Groomer</div>
+            </div>
+            <div class="text-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <img src="images/team2.jpg" class="mx-auto h-24" alt="Rian">
+              <div class="mt-3 font-semibold">Rian</div>
+              <div class="text-sm text-gray-500">Dokter Hewan</div>
+            </div>
+            <div class="text-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <img src="images/team3.jpg" class="mx-auto h-24" alt="Siti">
+              <div class="mt-3 font-semibold">Siti</div>
+              <div class="text-sm text-gray-500">Customer Care</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section (Updated) -->
+    <section id="contact" class="relative py-20 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-gray-800 dark:to-gray-900"></div>
+      
+      <div class="relative max-w-6xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h3 class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">Hubungi Kami</h3>
+          <p class="text-lg text-gray-600 dark:text-gray-300">Kami siap membantu Anda dengan segala kebutuhan hewan kesayangan</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Contact Form Card -->
+          <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+            <form id="contactForm" class="space-y-6">
+              <div class="group">
+                <label class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Nama Lengkap</label>
+                <input type="text" name="name" required 
+                       class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900
+                              focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all
+                              dark:text-gray-200 dark:placeholder-gray-400">
+              </div>
+              
+              <div class="group">
+                <label class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Email</label>
+                <input type="email" name="email" required 
+                       class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900
+                              focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all
+                              dark:text-gray-200 dark:placeholder-gray-400">
+              </div>
+              
+              <div class="group">
+                <label class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Pesan</label>
+                <textarea name="message" rows="4" required 
+                          class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900
+                                 focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all
+                                 dark:text-gray-200 dark:placeholder-gray-400"></textarea>
+              </div>
+              
+              <button type="submit" 
+                      class="w-full py-3 px-6 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-lg
+                             hover:from-emerald-600 hover:to-emerald-700 transform hover:scale-[1.02] transition-all
+                             focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+                Kirim Pesan
+              </button>
+            </form>
+            <div id="contactAlert" class="hidden mt-4 p-4 bg-emerald-50 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-lg">
+              Terima kasih! Pesan telah dikirim (simulasi).
+            </div>
+          </div>
+
+          <!-- Contact Info Card -->
+          <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-8 rounded-2xl shadow-lg space-y-8">
+            <!-- Info Grid -->
+            <div class="grid gap-8">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="p-3 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg">
+                    <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 dark:text-gray-100">Alamat</h4>
+                  <p class="mt-1 text-gray-600 dark:text-gray-300">Jl. Pekalongan</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="p-3 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg">
+                    <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 dark:text-gray-100">Telepon</h4>
+                  <p class="mt-1 text-gray-600 dark:text-gray-300">+62 812 3456 7890</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="p-3 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg">
+                    <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 dark:text-gray-100">Email</h4>
+                  <p class="mt-1 text-gray-600 dark:text-gray-300">info@petpals.local</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map Placeholder with better styling -->
+            <div class="mt-8 rounded-lg overflow-hidden shadow-lg">
+              <div class="h-64 bg-gray-100 dark:bg-gray-900 relative">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-center">
+                    <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                    </svg>
+                    <p class="text-gray-500"> Maps </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Updated Footer -->
+    <footer class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg border-t mt-12">
+      <div class="max-w-6xl mx-auto py-8 px-6">
+        <div class="grid md:grid-cols-4 gap-8">
+          <!-- Brand -->
+          <div class="col-span-1">
+            <div class="flex items-center gap-3 mb-4">
+              <img src="images/logo.png" alt="logo" class="h-8">
+              <span class="font-bold text-lg bg-gradient-to-r from-emerald-600 to-emerald-400 bg-clip-text text-transparent">
+                Pet Pals
+              </span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Memberikan pelayanan terbaik untuk hewan kesayangan Anda sejak 2018.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-span-1">
+            <h5 class="font-semibold mb-4 text-gray-900 dark:text-gray-100">Quick Links</h5>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#services" class="text-gray-600 dark:text-gray-400 hover:text-emerald-600">Layanan</a></li>
+              <li><a href="#shop" class="text-gray-600 dark:text-gray-400 hover:text-emerald-600">Toko</a></li>
+              <li><a href="#about" class="text-gray-600 dark:text-gray-400 hover:text-emerald-600">Tentang Kami</a></li>
+              <li><a href="#contact" class="text-gray-600 dark:text-gray-400 hover:text-emerald-600">Kontak</a></li>
+            </ul>
+          </div>
+
+          <!-- Social Links in Footer (Updated) -->
+          <div class="col-span-1">
+            <h5 class="font-semibold mb-4 text-gray-900 dark:text-gray-100">Sosial Media</h5>
+            <div class="flex space-x-4">
+              <!-- WhatsApp -->
+              <a href="https://wa.me/6281234567890?text=Halo%20Pet%20Pals" 
+                 class="p-3 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-all transform hover:scale-110 group"
+                 aria-label="WhatsApp">
+                <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884a9.87 9.87 0 01-4.853-1.278l-.361.214 3.741-.982-.998 3.648.235.374a9.86 9.86 0 011.51 5.26c-.001 5.45-4.436 9.884-9.888 9.884-2.64 0-5.122-1.03-6.988-2.898a9.825 9.825 0 01-2.893-6.994c.003-5.45 4.437-9.884 9.885-9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  WhatsApp
+                </span>
+              </a>
+
+              <!-- Instagram -->
+              <a href="https://instagram.com/petpals.example" 
+                 class="p-3 rounded-xl transition-all transform hover:scale-110 group relative"
+                 style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"
+                 target="_blank" rel="noopener" aria-label="Instagram">
+                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+                <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  Instagram
+                </span>
+              </a>
+
+              <!-- TikTok -->
+              <a href="https://www.tiktok.com/@petpals_example" 
+                 class="p-3 bg-black rounded-xl hover:bg-gray-900 transition-all transform hover:scale-110 group relative"
+                 target="_blank" rel="noopener" aria-label="TikTok">
+                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64c.298 0 .59.045.87.134V9.37a6.18 6.18 0 00-1-.08A6.34 6.34 0 004 17.91a6.34 6.34 0 0010.82-4.41v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.13"/>
+                </svg>
+                <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  TikTok
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="col-span-1">
+            <h5 class="font-semibold mb-4 text-gray-900 dark:text-gray-100">Newsletter</h5>
+            <form class="flex">
+              <input type="email" placeholder="Email anda" 
+                     class="flex-1 px-3 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-l-lg
+                            focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+              <button class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-r-lg transition-colors">
+                Daftar
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-600 dark:text-gray-400">
+          &copy; 2025 Pet Pals Pet Shop • Jl. Pekalongan • Email: info@petpals.local
+        </div>
+      </div>
+    </footer>
+
+  <!-- ADDED: inline script for interactivity (keeps behavior even jika js/script.js tidak tersedia) -->
+  <script>
+    // Simple slider rotation
+    (function(){
+      let idx = 0;
+      const slides = document.querySelectorAll('.slide');
+      if(slides.length <= 1) return;
+      function show(i){
+        slides.forEach((s, j) => s.classList.toggle('hidden', j !== i));
+      }
+      show(0);
+      setInterval(() => { idx = (idx + 1) % slides.length; show(idx); }, 5000);
+    })();
+
+    // Scroll-to-top & adopt -> contact behavior
+    (function(){
+      const scrollTopBtn = document.getElementById('scrollTop');
+      window.addEventListener('scroll', () => {
+        if(window.scrollY > 300) scrollTopBtn.classList.remove('hidden'); else scrollTopBtn.classList.add('hidden');
+      });
+      scrollTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+      // adopt buttons scroll to contact
+      document.querySelectorAll('.btn-adopt').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+          const el = document.getElementById('contact');
+          if(el) window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth'});
+        });
+      });
+    })();
+
+    // Simple stats counter when visible
+    (function(){
+      const counters = [
+        {el: document.getElementById('stat1'), to: 1200},
+        {el: document.getElementById('stat2'), to: 24},
+        {el: document.getElementById('stat3'), to: 5300}
+      ];
+      function animate(el, to){
+        let start = 0;
+        const dur = 1200;
+        const step = (timestamp) => {
+          start += 16;
+          const progress = Math.min(start / dur, 1);
+          el.textContent = Math.floor(progress * to);
+          if(progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            counters.forEach(c => animate(c.el, c.to));
+            obs.disconnect();
+          }
+        });
+      }, {threshold: 0.3});
+      const statsSection = document.getElementById('stats');
+      if(statsSection) obs.observe(statsSection);
+    })();
+
+    // Contact form (simulated)
+    (function(){
+      const form = document.getElementById('contactForm');
+      const alertEl = document.getElementById('contactAlert');
+      if(!form) return;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Normally send via API. Here we simulate success.
+        alertEl.classList.remove('hidden');
+        form.reset();
+        setTimeout(()=> alertEl.classList.add('hidden'), 4000);
+      });
+    })();
+
+    // ADDED: image fallback handler untuk mengganti gambar rusak dengan SVG placeholder
+        (function(){
+          const placeholderSvg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='480'>
+            <rect fill='%23f3f4f6' width='100%' height='100%'/>
+            <g fill='%23737478' font-family='Arial,Helvetica,sans-serif' font-size='28' text-anchor='middle'>
+              <text x='50%' y='45%'>No Image</text>
+              <text x='50%' y='62%' font-size='16'>Gambar tidak tersedia</text>
+            </g>
+          </svg>`;
+          const dataUri = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(placeholderSvg);
+    
+          function applyFallback(img){
+            if(!img.hasAttribute('alt') || img.getAttribute('alt').trim() === '') {
+              img.setAttribute('alt', 'Gambar tidak tersedia');
+            }
+    
+            // jika terjadi error saat memuat gambar, ganti dengan data URI placeholder
+            const onErr = function(){
+              if(this.src !== dataUri){
+                this.classList.add('img-fallback');
+                this.src = dataUri;
+              }
+              // hapus listener agar tidak loop
+              this.removeEventListener('error', onErr);
+            };
+            img.addEventListener('error', onErr);
+    
+            // jika gambar sudah selesai tetapi gagal dimuat (mis. file tidak ada), naturalWidth akan 0
+            if(img.complete && (!img.naturalWidth || img.naturalWidth === 0)){
+              img.classList.add('img-fallback');
+              img.src = dataUri;
+            }
+          }
+    
+          document.addEventListener('DOMContentLoaded', function(){
+            document.querySelectorAll('img').forEach(applyFallback);
+          });
+        })();
+  </script>
+
+  <!-- ...existing script include... -->
+  <script src="js/script.js"></script>
+</body>
+</html>
